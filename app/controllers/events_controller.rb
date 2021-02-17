@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   def index; end
 
   def new
-    @event = current.events.build
+    @event = Event.new
   end
 
   def create
@@ -15,6 +15,10 @@ class EventsController < ApplicationController
       flash[:alert] = 'Event is not created, try again'
       render 'new'
     end
+  end
+
+  def show
+    @event = Event.find(params[:id])
   end
 
   private
