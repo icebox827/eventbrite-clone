@@ -20,13 +20,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <p>
+            <p class="control">
               <%= link_to "Sign Up", new_user_path, class: "nav-link active" %>
             </p>
             <p class="control">
               <%= link_to "Sign In", new_session_path, class: "nav-link" %>
             </p>
-            
+            <p class="control">
+              <%= link_to "Sign Out", sessions_path, method: :delete, class: "nav-link" %>
+            </p>
           </div>
         </div>
       </div>
