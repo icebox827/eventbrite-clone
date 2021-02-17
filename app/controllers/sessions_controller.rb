@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       session[:username] = @user.name
       redirect_to user_path(@user)
     else
-      flash.now[:danger] = 'There was something wrong with the login information'
+      flash.now[:danger] = 'Wrong login info'
       render 'new'
     end
   end
