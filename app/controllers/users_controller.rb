@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
-  def user; end
+  def show
+    # @user = User.find(params[:id])
+    @events = Event.where(creator_id: session[:user_id].to_i)
+  end
 
   def new
     @user = User.new
-    # redirect_to user_path(current_user) if logged_in?
   end
 
   def create
@@ -17,10 +19,6 @@ class UsersController < ApplicationController
       flash[:alert] = 'User not created, please try again'
       render 'new'
     end
-  end
-
-  def show
-    @user = User.find(params[:id])
   end
 
   private
