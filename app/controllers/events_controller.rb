@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    # @events = Event.where(creator_id: session[:user_id].to_i).order(date: :asc)
+    @events_prev = Event.prev_events
+    @events_next = Event.upcoming_events
   end
 
   def new
@@ -22,8 +24,9 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @creator = User.find(@event.creator_id)
-    @event.attendees.each do |e|
-      @users = User.where.not(name: e.name).where.not(name: @event.creator.name)
+    # @attendees = User.joins('INNER JOIN invitations ON users.user_id=invitations.attendee').where('invitations.attended_event' => @event.id)
+    @event.attendees.each do |event|
+      @users = User.where.not(name: event.name).where.not(name: @event.creator.name)
     end
   end
 
